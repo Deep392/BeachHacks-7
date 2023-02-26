@@ -5,10 +5,12 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import {BrowserRouter as Router, Route, Switch, useLocation} from "react-router-dom";
 import HomePage from "../HomePage/HomePage";
 import {auth, provider} from "../../firebase-config";
-import AddPost from "../AddPost/AddPost";
+import AddPost from "../AddPost/Addpost";
 import Messages from "../Messages/Messages";
 import Advising from "../Advising/Advising";
 import ContactUs from "../ContactUs/ContactUs";
+import app from "../../firebase-config"
+
 
 const Login = ({ setIsAuth }) => {
     const [email, setEmail] = useState("");
@@ -22,6 +24,7 @@ const Login = ({ setIsAuth }) => {
 
         signInWithEmailAndPassword(getAuth(), email, password)
             .then((userCredential) => {
+		console.log('Hi')
                 const user = userCredential.user;
                 console.log(user);
                 document.getElementById("LoginModal").checked = false;
@@ -37,8 +40,6 @@ const Login = ({ setIsAuth }) => {
 
     useEffect(() => {
         if (isLoggedIn) {
-
-
             history.push("/HomePage");
         }
     }, [isLoggedIn, history]);
@@ -73,7 +74,7 @@ const Login = ({ setIsAuth }) => {
                                 className="input input-bordered w-full max-w-xs"
                                 placeholder="Email"
 				value = {email}
-				onChange = {(e) => setEmail(e.target.values)}
+				onChange = {(e) => setEmail(e.target.value)}
                             />
                         </div>
 

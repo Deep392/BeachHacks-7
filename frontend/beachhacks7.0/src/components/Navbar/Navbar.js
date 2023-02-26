@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {signOut} from "firebase/auth"
-import {auth} from "../../firebase-config";
+import {auth, app} from "../../firebase-config";
 
 const Navbar = () => {
     const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));

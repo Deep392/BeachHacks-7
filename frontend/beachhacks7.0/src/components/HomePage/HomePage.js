@@ -3,8 +3,9 @@ import './HomePage.css'
 import Sidenav from "../Sidenav/Sidenav"
 import { getDocs, collection, deleteDoc, doc } from "firebase/firestore";
 import { auth, db } from "../../firebase-config";
-import {Button} from 'grommet'
+// import {Button} from 'grommet'
 import Comments from '../Comments/Comments';
+import app from '../../firebase-config';
 import "./HomePage.css";
 /*
     Here we have the main Login, if the User is not Logged in, they will see this Header
@@ -57,7 +58,7 @@ const HomePage = () => {
                 )}
               </div>
             </div>
-            <div className="postTextContainer"> {post.postText} </div>
+            <div className="postTextContainer"> {post.post} </div>
             <div className='buttons'>
               <button className='button'>Like</button>
               <button className='button' onClick={handleOpen}>

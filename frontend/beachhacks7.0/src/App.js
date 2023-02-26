@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import {useState} from "react";
-import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
+import {BrowserRouter as Router, Routes, Route, Link, Switch} from "react-router-dom";
 // Importing Components
 import Sidenav from "./components/Sidenav/Sidenav";
 import Navbar from "./components/Navbar/Navbar";
@@ -43,13 +43,13 @@ function App() {
                                         <Sidenav/>
                                     </div>
                                     <div className="flex items-center justify-center">
-                                        <Routes>
+                                        <Switch>
                                             <Route exact path="/HomePage" component={HomePage}/>
-                                            {/* <Route exact path="/AddPost" component={AddPost}/>
+                                            {/* <Route exact path="/AddPost" component={Addpost}/>
                                             <Route exact path="/Messages" component={Messages}/>
                                             <Route exact path="/Advising" component={Advising}/>
                                             <Route exact path="/ContactUs" component={ContactUs}/> */}
-                                        </Routes>
+                                        </Switch>
                                     </div>
                                 </div>
 

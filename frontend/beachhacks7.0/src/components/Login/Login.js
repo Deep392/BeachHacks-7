@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Login.css";
 import ForgotPass from "../ForgotPass/ForgotPass";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import {BrowserRouter as Router, Route, Switch, useLocation} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch, useHistory} from "react-router-dom";
 import HomePage from "../HomePage/HomePage";
 import {auth, provider} from "../../firebase-config";
 import AddPost from "../AddPost/Addpost";
@@ -17,7 +17,7 @@ const Login = ({ setIsAuth }) => {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const history = useLocation();
+    const history = useHistory();
 
     const logIn = async (event) => {
         event.preventDefault();

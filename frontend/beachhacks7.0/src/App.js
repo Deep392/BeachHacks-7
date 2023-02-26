@@ -45,8 +45,8 @@ function App() {
                                     <div className="flex items-center justify-center">
                                         <Switch>
                                             <Route exact path="/HomePage" component={HomePage}/>
-                                            {/* <Route exact path="/AddPost" component={Addpost}/>
-                                            <Route exact path="/Messages" component={Messages}/>
+                                            <Route exact path="/AddPost" component={Addpost}/>
+                                            {/* <Route exact path="/Messages" component={Messages}/>
                                             <Route exact path="/Advising" component={Advising}/>
                                             <Route exact path="/ContactUs" component={ContactUs}/> */}
                                         </Switch>

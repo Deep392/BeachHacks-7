@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../../firebase-config";
-import { useLocation } from "react-router-dom";
+import { useHistory} from "react-router-dom";
 import app from "../../firebase-config";
 import "./Addpost.css"
 
@@ -10,7 +10,7 @@ const AddPost = () => {
   const [postText, setPostText] = useState("");
 
   const postsCollectionRef = collection(db, "posts");
-  let navigate = useLocation();
+  let navigate = useHistory();
 
   const createPost = async () => {
     await addDoc(postsCollectionRef, {

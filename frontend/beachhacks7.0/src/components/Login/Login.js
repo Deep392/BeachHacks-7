@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import "./Login.css";
 import ForgotPass from "../ForgotPass/ForgotPass";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {getAuth, signInWithEmailAndPassword, browserLocalPersistence, setPersistence} from "firebase/auth";
 import {BrowserRouter as Router, Route, Switch, useHistory} from "react-router-dom";
 import HomePage from "../HomePage/HomePage";
 import {auth, provider} from "../../firebase-config";
@@ -12,31 +12,33 @@ import ContactUs from "../ContactUs/ContactUs";
 import app from "../../firebase-config"
 
 
-const Login = ({ setIsAuth, setUser }) => {
+const Login = ({setIsAuth, setUser}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const history = useHistory();
+    let user;
 
     const logIn = async (event) => {
+
         event.preventDefault();
 
-        signInWithEmailAndPassword(getAuth(), email, password)
-            .then((userCredential) => {
-		console.log('Hi')
-                const user = userCredential.user;
-                console.log(user);
-                document.getElementById("LoginModal").checked = false;
-                setIsAuth(true);
-                setUser(auth.currentUser)
-                history.push("/");
-                setIsLoggedIn(true);
-            })
-            .catch((e) => {
-                console.log("Wrong UserID or Password.");
-                setError(e.message);
-            });
+        await auth.setPersistence(browserLocalPersistence).then(() => {
+            signInWithEmailAndPassword(getAuth(), email, password)
+                .then((userCredential) => {
+                    user = userCredential.user;
+                    document.getElementById("LoginModal").checked = false;
+                    setIsAuth(true);
+                    setUser(auth.currentUser)
+                    history.push("/");
+                    setIsLoggedIn(true);
+                })
+                .catch((e) => {
+                    console.log("Wrong UserID or Password.");
+                    setError(e.message);
+                })
+        })
     };
 
     useEffect(() => {
@@ -46,25 +48,24 @@ const Login = ({ setIsAuth, setUser }) => {
     }, [isLoggedIn, history]);
 
 
-    return (
-         <div className="Login">
+    return (<div className="Login">
             <form onSubmit={logIn}>
                 <label htmlFor="LoginModal" className="btn btn-outline btn-secondary">
                     Log In
                 </label>
-                <input type="checkbox" id="LoginModal" className="modal-toggle" />
+                <input type="checkbox" id="LoginModal" className="modal-toggle"/>
                 <div className="modal">
                     <div className="modal-box relative">
                         <h1 className="logo-text spare-header-text">stuXpert</h1>
-                        <br />
-                        <br />
+                        <br/>
+                        <br/>
                         <h1 className="heading text-left">Log In</h1>
                         {error && <p className="error">Wrong Email or Password</p>}
                         <p className="text text-left">
                             By continuing, you are setting up a Rooster account and agree to
                             our User Agreement and Privacy Policy.
                         </p>
-                        <br />
+                        <br/>
 
                         <div className="form-control w-full max-w-xs">
                             <label className="label">
@@ -74,8 +75,8 @@ const Login = ({ setIsAuth, setUser }) => {
                                 type="text"
                                 className="input input-bordered w-full max-w-xs"
                                 placeholder="Email"
-				value = {email}
-				onChange = {(e) => setEmail(e.target.value)}
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
 
@@ -91,15 +92,14 @@ const Login = ({ setIsAuth, setUser }) => {
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
-                        <ForgotPass />
+                        <ForgotPass/>
                         <div className="modal-action form-control mt-6">
                             <button type="submit" className="btn btn-accent">Login</button>
                         </div>
                     </div>
                 </div>
             </form>
-         </div>
-    );
+        </div>);
 };
 
 export default Login;

@@ -13,26 +13,36 @@ import Advising from "./components/Advising/Advising";
 import ContactUs from "./components/ContactUs/ContactUs"
 import Login from "./components/Login/Login";
 import Signup from "./components/Signup/Signup";
-import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import {auth} from "./firebase-config";
 
 function App() {
+    console.log(auth.currentUser)
     const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(auth.currentUser);
+    const data = window.localStorage.getItem('MY_APP_STATE');
+    const [showContent, setShowContent] = useState(JSON.parse(data));
+
+    useEffect(() => {
+        if (data !== null) setShowContent(JSON.parse(data));
+    }, []);
+
+    useEffect(() => {
+        window.localStorage.setItem('MY_APP_STATE', JSON.stringify(showContent));
+    }, [showContent]);
 
     return (
         <Router>
-
             <nav className="nav ">
-                {!isAuth ? (
+                {!showContent ? (
                     <div className="grid grid-cols-1 gap-10  place-content-center justify-items-center main-content">
                         <h1 className="logo-text main-header-text">stuXpert</h1>
 
                         <div className="flex flex-col lg:flex-row">
                             <div className="grid flex-grow card place-items-center"><Signup/></div>
                             <div className="divider lg:divider-horizontal"></div>
-                            <div className="grid flex-grow card place-items-center"><Login setIsAuth={setIsAuth} setUser={setUser} /></div>
+                            <div className="grid flex-grow card place-items-center"><Login setIsAuth={setShowContent}
+                                                                                           setUser={setUser}/></div>
                         </div>
                     </div>
                 ) : (
@@ -40,7 +50,7 @@ function App() {
                         <div className="grid grid-rows-12">
                             <Router>
                                 <div className="row-start-1 row-end-2 sticky top-0">
-                                    <Navbar/>
+                                    <Navbar isLog={setShowContent}/>
                                 </div>
 
                                 <div className="row-start-2 row-end-11">

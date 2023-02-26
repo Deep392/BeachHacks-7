@@ -31,7 +31,7 @@ const Login = ({setIsAuth, setUser}) => {
                     document.getElementById("LoginModal").checked = false;
                     setIsAuth(true);
                     setUser(auth.currentUser)
-                    history.push("/");
+                    history.push("/HomePage");
                     setIsLoggedIn(true);
                 })
                 .catch((e) => {
@@ -41,11 +41,11 @@ const Login = ({setIsAuth, setUser}) => {
         })
     };
 
-    useEffect(() => {
-        if (isLoggedIn) {
-            history.push("/HomePage");
-        }
-    }, [isLoggedIn, history]);
+    // useEffect(() => {
+    //     if (isLoggedIn) {
+    //         history.push("/HomePage");
+    //     }
+    // }, [isLoggedIn, history]);
 
 
     return (<div className="Login">

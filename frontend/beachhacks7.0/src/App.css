@@ -198,3 +198,23 @@
         border-color: #fd963e;
     }
 }
+
+body{
+    margin: 0;
+}
+
+.container{
+    display: grid;
+    grid: 80px auto 80px/120px auto;
+    min-height: 100vh;
+}
+
+
+footer{
+    grid-column: 1/3;
+    grid-row: 3/4;
+}
+
+main{
+
+}

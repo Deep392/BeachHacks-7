@@ -14,7 +14,8 @@ import ContactUs from "./components/ContactUs/ContactUs"
 import Login from "./components/Login/Login";
 import Signup from "./components/Signup/Signup";
 import 'firebase/compat/firestore';
-import {auth} from "./firebase-config";
+import { getDocs, collection, deleteDoc, doc, updateDoc, increment, arrayUnion } from "firebase/firestore";
+import { auth, db } from "./firebase-config";
 
 function App() {
     console.log(auth.currentUser)
@@ -30,6 +31,10 @@ function App() {
     useEffect(() => {
         window.localStorage.setItem('MY_APP_STATE', JSON.stringify(showContent));
     }, [showContent]);
+
+
+    useEffect(() => {
+    }, [user]);
 
     return (
         <Router>
@@ -47,30 +52,26 @@ function App() {
                     </div>
                 ) : (
                     <>
-                        <div className="grid grid-rows-12">
+                        <div style={{height:"100%"}}>
                             <Router>
-                                <div className="row-start-1 row-end-2 sticky top-0">
+
+                                <header className="sticky top-0">
                                     <Navbar isLog={setShowContent}/>
-                                </div>
+                                </header>
 
-                                <div className="row-start-2 row-end-11">
-                                    <div className="fixed">
-                                        <Sidenav/>
-                                    </div>
-                                    <div className="flex items-center justify-center">
-                                        <Switch>
-                                            <Route exact path="/HomePage" component={HomePage}/>
-                                            <Route exact path="/AddPost" component={Addpost}/>
-                                            <Route exact path="/Messages" component={Messages}/>
-                                            <Route exact path="/Advising" component={Advising}/>
-                                            <Route exact path="/ContactUs" component={ContactUs}/>
-                                        </Switch>
-                                    </div>
-                                </div>
+                                <main >
+                                    <Switch>
+                                        <Route exact path="/HomePage" component={HomePage}/>
+                                        <Route exact path="/AddPost" component={Addpost}/>
+                                        <Route exact path="/Messages" component={Messages}/>
+                                        <Route exact path="/Advising" component={Advising}/>
+                                        <Route exact path="/ContactUs" component={ContactUs}/>
+                                    </Switch>
+                                </main>
 
-                                <div className='row-start-11 row-end-12 '>
+                                <footer>
                                     <Footer/>
-                                </div>
+                                </footer>
                             </Router>
                         </div>
                     </>

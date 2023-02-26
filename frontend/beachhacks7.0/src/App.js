@@ -45,10 +45,10 @@ function App() {
                                     <div className="flex items-center justify-center">
                                         <Routes>
                                             <Route exact path="/HomePage" component={HomePage}/>
-                                            <Route exact path="/AddPost" component={AddPost}/>
+                                            {/* <Route exact path="/AddPost" component={AddPost}/>
                                             <Route exact path="/Messages" component={Messages}/>
                                             <Route exact path="/Advising" component={Advising}/>
-                                            <Route exact path="/ContactUs" component={ContactUs}/>
+                                            <Route exact path="/ContactUs" component={ContactUs}/> */}
                                         </Routes>
                                     </div>
                                 </div>

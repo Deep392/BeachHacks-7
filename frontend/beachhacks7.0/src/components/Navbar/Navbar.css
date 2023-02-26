@@ -1,78 +1,10 @@
-.App {
-    text-align: center;
+.navbar-basic{
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
-}
-
-.App-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    font-size: calc(10px + 2vmin);
-    color: white;
-}
-
-.App-link {
-    color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-.nav{
-    height: 100% ;
-}
-
-@keyframes hue {
-    from {
-        -webkit-filter: hue-rotate(0deg);
-    }
-    to {
-        -webkit-filter: hue-rotate(-360deg);
-    }
-}
-
-.logo-text{
-    color: #f35626;
-    background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -webkit-animation: hue 5s infinite linear;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
-    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    font-feature-settings: "kern";
-    font-weight: 700;
-    overflow-wrap: break-word;
-    text-align: center;
-    text-rendering: optimizelegibility;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-.main-header-text{
-    font-size: 130px;
-}
-
-.spare-header-text{
-    font-size: 50px;
-}
-.modal-box{
-    border: 3px solid white;
-    padding-right: 80px;
-    padding-left: 80px;
+.nav-bod{
+    border-bottom: 3px solid white;
 
     animation-name: flash_border;
     animation-duration: 10s;
@@ -88,9 +20,23 @@
     -moz-animation-iteration-count: infinite;
 }
 
-.main-content{
-    height: 100%;
+.box-bod{
+    border: 1px solid white;
+    border-radius: 20px;
+    animation-name: flash_border;
+    animation-duration: 10s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    -webkit-animation-name: flash_border;
+    -webkit-animation-duration: 10s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-name: flash_border;
+    -moz-animation-duration: 10s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: infinite;
 }
+
 
 @keyframes flash_border {
     0% {
@@ -198,24 +144,4 @@
     100% {
         border-color: #fd963e;
     }
-}
-
-body{
-    margin: 0;
-}
-
-.container{
-    display: grid;
-    grid: 80px auto 80px/120px auto;
-    min-height: 100vh;
-}
-
-
-footer{
-    grid-column: 1/3;
-    grid-row: 3/4;
-}
-
-main{
-
 }

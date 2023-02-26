@@ -1,0 +1,65 @@
+.academics {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+}
+
+.acad-title {
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    font-family: 'Roboto Condensed';
+    font-size: 60px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.acad-items-wrapper {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.acad-items-1 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    font-family: 'Roboto Condensed';
+    font-size: 40px;
+}
+
+.acad-items-2 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    font-family: 'Roboto Condensed';
+    font-size: 40px;
+}
+.acad-items-1:hover {
+    background-color: #D3D3D3;
+    transition: 1s;
+    box-shadow: 0 0 10px black;
+}
+.acad-items-2:hover {
+    background-color: #f19484;
+    transition: 1s;
+    box-shadow: 0 0 10px black;
+}
+.container {
+    margin-bottom: 20px;
+}
+
+.faq-container {
+    font-weight: bolder;
+    font-size: 25px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.150);
+}
+
+.faq-container:hover {
+    transition: 1s;
+    background-color: rgba(0, 0, 0, 0.904);
+    color: white;
+}

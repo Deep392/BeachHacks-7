@@ -1,6 +1,6 @@
 import React, {useContext, useState} from "react";
 import "./SignIn.css"
-import {useHistory} from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth';
 import app from "../../firebase-config";
 
@@ -11,7 +11,7 @@ const Signin = () => {
     const [confirmpassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
 
-    const history = useHistory();
+    const history = useLocation();
     const createAccount = async() => {
         try{
             if (password !== confirmpassword){

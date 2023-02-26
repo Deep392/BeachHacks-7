@@ -15,6 +15,7 @@ const Signin = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmpassword, setConfirmPassword] = useState('');
+    const [username, setUsername] = useState('');
     const [error, setError] = useState('');
 
     const history = useHistory();
@@ -47,6 +48,19 @@ const Signin = () => {
                     <h1 className="heading text-left">Sign Up</h1>
                     {error && <p className="error">{error}</p> }
                     <p className="text text-left">By continuing, you are setting up a Rooster account and agree to our User Agreement and Privacy Policy.</p>                    <br/>
+
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label">
+                            <span className="label-text">Set stuXpert Account Username</span>
+                        </label>
+                        <input
+                            type="text"
+                            className="input input-bordered w-full max-w-xs"
+                            placeholder="Username"
+                            value={username}
+                            onChange={e => setUsername(e.target.value)}
+                        />
+                    </div>
 
                     <div className="form-control w-full max-w-xs">
                         <label className="label">

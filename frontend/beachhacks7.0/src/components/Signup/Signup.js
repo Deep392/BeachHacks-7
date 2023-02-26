@@ -1,7 +1,7 @@
 import React, {useContext, useState} from "react";
 import "./Signup.css"
 import {useLocation} from 'react-router-dom';
-import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth';
+import {getAuth, createUserWithEmailAndPassword, } from 'firebase/auth';
 import app from "../../firebase-config";
 
 const Signin = () => {

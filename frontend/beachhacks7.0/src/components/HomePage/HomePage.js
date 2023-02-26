@@ -15,8 +15,11 @@ const HomePage = () => {
   const [comments, setComments] = useState([]);
   const [open, setOpen] = useState(false);
 
-  const handleOpen = () => {
-    setOpen(!open);
+  const handleOpen = (postId) => {
+    //setOpen(!open);
+    <Comments
+        postId={postId}
+    ></Comments>
   };
   const postsCollectionRef = collection(db, "posts");
 
@@ -24,8 +27,8 @@ const HomePage = () => {
     const getPosts = async () => {
       const data = await getDocs(postsCollectionRef);
       setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      console.log(postLists);
-      console.log(comments);
+    //   console.log(postLists);
+    //   console.log(comments);
     };
 
     getPosts();
@@ -35,10 +38,14 @@ const HomePage = () => {
     const postDoc = doc(db, "posts", id);
     await deleteDoc(postDoc);
   };
-    
+
+  const showComments = (postId) => {
+    <Comments postId={postId}/>
+  }
   return (
     <div className="homePage">
       {postLists.map((post) => {
+        console.log("post: ", post.id)
         return (
           <div className="post">
             <div className="postHeader">
@@ -61,12 +68,8 @@ const HomePage = () => {
             <div className="postTextContainer"> {post.postText} </div>
             <div className='buttons'>
               <button className='button'>Like</button>
-              <button className='button' onClick={handleOpen}>
-                <Comments
-                  postId={post.id}
-                  className="faqBox"
-                ></Comments>
-              </button>
+
+              <button className='btn' onClick={showComments(post.id)}>Comments</button>
             </div>
             {/* <h3>@{post.author.name}</h3> */}
           </div>

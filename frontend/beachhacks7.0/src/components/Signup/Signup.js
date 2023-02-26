@@ -1,5 +1,5 @@
 import React, {useContext, useState} from "react";
-import "./SignIn.css"
+import "./Signup.css"
 import {useLocation} from 'react-router-dom';
 import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth';
 import app from "../../firebase-config";
@@ -28,7 +28,7 @@ const Signin = () => {
 
 
     return (
-        <div className="Signin">
+        <div className="Signup">
             <label htmlFor="SignInModal" className="btn btn-outline btn-primary ">Sign Up</label>
             <input type="checkbox" id="SignInModal" className="modal-toggle" />
             <div className="modal ">
@@ -85,7 +85,7 @@ const Signin = () => {
                     </label>
 
                     <div className="modal-action form-control mt-6">
-                        <label htmlFor="SignInModal" className="btn btn-primary" onClick={createAccount}>Sign Up</label>
+                        <label htmlFor="SignInModal" className="btn btn-outline btn-primary" onClick={createAccount}>Sign Up</label>
                     </div>
 
 

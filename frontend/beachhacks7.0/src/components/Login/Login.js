@@ -2,13 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Login.css";
 import ForgotPass from "../ForgotPass/ForgotPass";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import {BrowserRouter as Router, Route, Switch, useLocation} from "react-router-dom";
-import HomePage from "../HomePage/HomePage";
-import {auth, provider} from "../../firebase-config";
-import AddPost from "../AddPost/AddPost";
-import Messages from "../Messages/Messages";
-import Advising from "../Advising/Advising";
-import ContactUs from "../ContactUs/ContactUs";
+import {useLocation} from "react-router-dom";
 
 const Login = ({ setIsAuth }) => {
     const [email, setEmail] = useState("");
@@ -91,7 +85,7 @@ const Login = ({ setIsAuth }) => {
                         </div>
                         <ForgotPass />
                         <div className="modal-action form-control mt-6">
-                            <button type="submit" className="btn btn-accent">Login</button>
+                            <button type="submit" className="btn btn-outline btn-secondary">Login</button>
                         </div>
                     </div>
                 </div>

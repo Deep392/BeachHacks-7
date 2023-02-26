@@ -7,11 +7,11 @@ import Sidenav from "./components/Sidenav/Sidenav";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import HomePage from "./components/HomePage/HomePage";
-import AddPost from "./components/AddPost/AddPost"
+import AddPost from "./components/AddPost/Addpost"
 import Messages from "./components/Messages/Messages";
 import Advising from "./components/Advising/Advising";
 import ContactUs from "./components/ContactUs/ContactUs"
-import Login from "./components/LogIn/Login";
+import Login from "./components/Login/Login";
 import Signup from "./components/Signup/Signup";
 
 function App() {
@@ -45,10 +45,10 @@ function App() {
                                     <div className="flex items-center justify-center">
                                         <Routes>
                                             <Route exact path="/HomePage" component={HomePage}/>
-                                            <Route exact path="/AddPost" component={AddPost}/>
+                                            {/* <Route exact path="/AddPost" component={AddPost}/>
                                             <Route exact path="/Messages" component={Messages}/>
                                             <Route exact path="/Advising" component={Advising}/>
-                                            <Route exact path="/ContactUs" component={ContactUs}/>
+                                            <Route exact path="/ContactUs" component={ContactUs}/> */}
                                         </Routes>
                                     </div>
                                 </div>

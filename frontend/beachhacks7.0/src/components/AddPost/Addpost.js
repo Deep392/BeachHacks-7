@@ -16,6 +16,7 @@ const AddPost = () => {
     await addDoc(postsCollectionRef, {
       title,
       postText,
+      author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
     });
     navigate.push("/Homepage");
   };

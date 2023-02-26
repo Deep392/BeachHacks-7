@@ -20,6 +20,8 @@ const HomePage = () => {
   const [showBox, setShowBox] = useState(false);
   const onClick = () => setShowComments(!showComments);
   const onClickshowBox = () => setShowBox(!showBox)
+  const currUser = auth.currentUser;
+  console.log("curr User: ", currUser.email);
 
   const postsCollectionRef = collection(db, "posts");
 
@@ -68,6 +70,7 @@ const HomePage = () => {
               <div className="post">
                 <div className="postHeader">
                   <div className="title">
+                    <h2>{post.userN}</h2>
                     <h1> {post.title}</h1>
                     <p>{post.likes} stuXperts like this</p>
                     <p>{post.dislikes} stuXperts dislike this</p>

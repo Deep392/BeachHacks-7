@@ -28,8 +28,8 @@ const Navbar = ({isLog}) => {
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-neutral rounded-box w-52 box-bod">
                         <li><a><Link to="/HomePage">Home</Link></a></li>
                         <li><a><Link to="/AddPost">Add a Post</Link></a></li>
-                        <li><a><Link to="/Messages">Messages</Link></a></li>
-                        <li><a><Link to="/Advising">Advising</Link></a></li>
+                        {/*<li><a><Link to="/Messages">Messages</Link></a></li>*/}
+                        {/*<li><a><Link to="/Advising">Advising</Link></a></li>*/}
                         <li><a><Link to="/ContactUs">Contact Us</Link></a></li>
                     </ul>
                 </div>

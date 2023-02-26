@@ -42,96 +42,99 @@ const HomePage = () => {
   const likes = async (id) => {
     const postDoc = doc(db, "posts", id);
     await updateDoc(postDoc, {
-        likes: increment(1)
+      likes: increment(1)
     });
   };
 
   const dislikes = async (id) => {
     const postDoc = doc(db, "posts", id);
     await updateDoc(postDoc, {
-        dislikes: increment(1)
+      dislikes: increment(1)
     });
   };
 
   const addComment = async (id) => {
     const postDoc = doc(db, "posts", id);
     await updateDoc(postDoc, {
-        comments: arrayUnion(commentText)
+      comments: arrayUnion(commentText)
     });
   };
 
   return (
-    <div className="homePage">
-      {postLists.map((post) => {
-        console.log("post: ", post);
-        return (
-          <div className="post">
-            <div className="postHeader">
-              <div className="title">
-                <h1> {post.title}</h1>
-                <p>{post.likes} stuXperts like this</p>
-                <p>{post.dislikes} stuXperts dislike this</p>
-              </div>
-              <div>
-              <label
-                  className="btn btn-outline btn-secondary"
-                  onClick={() => {
-                    likes(post.id);
-                  }}
-                >
-                  Like
-                </label>
+      <div className="homePage">
+        {postLists.map((post) => {
+          console.log("post: ", post);
+          return (
+              <div className="post">
+                <div className="postHeader">
+                  <div className="title">
+                    <h1> {post.title}</h1>
+                    <p>{post.likes} stuXperts like this</p>
+                    <p>{post.dislikes} stuXperts dislike this</p>
+                  </div>
+                  <div>
+                    <label
+                        className="btn btn-outline btn-secondary"
+                        onClick={() => {
+                          likes(post.id);
+                        }}
+                    >
+                      Like
+                    </label>
 
-                <label
-                  className="btn btn-outline btn-secondary"
-                  onClick={() => {
-                    dislikes(post.id);
-                  }}
-                >
-                  Disike
-                </label>
+                    <label
+                        className="btn btn-outline btn-secondary"
+                        onClick={() => {
+                          dislikes(post.id);
+                        }}
+                    >
+                      Disike
+                    </label>
 
-                {showLikes
-                  ? post.comments.map((content) => {
-                      console.log(content);
-                      return <p>{content}</p>;
-                    }) 
-                  : null}
-                <label
-                  className="btn btn-outline btn-secondary"
-                  onClick={onClick}
-                >
-                  Comments
-                </label>
+                    {showLikes
+                        ? post.comments.map((content) => {
+                          console.log(content);
+                          return <p>{content}</p>;
+                        })
+                        : null}
+                    <label
+                        className="btn btn-outline btn-secondary"
+                        onClick={onClick}
+                    >
+                      Comments
+                    </label>
 
-                {showComments
-                  ? post.comments.map((content) => {
-                      console.log(content);
-                      return <p>{content}</p>;
-                    }) 
-                  : null}
+                    {showComments
+                        ? post.comments.map((content) => {
+                          console.log(content);
+                          return <p>{content}</p>;
+                        })
+                        : null}
 
-                <label
-                  className="btn btn-outline btn-secondary"
-                  onClick={onClickshowBox}
-                >
-                  Add a Comment
-                </label>
-                {showBox?
+                    <label
+                        className="btn btn-outline btn-secondary"
+                        onClick={onClickshowBox}
+                    >
+                      Add a Comment
+                    </label>
+                    {showBox?
+                        <div>
                     <textarea
-                    placeholder="Post..."
-                    onChange={(event) => {
-                    setCommentText(event.target.value);
-                    }}
-                />: null}
-                <button onClick={() => {
-                    addComment(post.id);
-                  }}> 
-                  Submit Comment
-                </button>
+                        placeholder="Post..."
+                        onChange={(event) => {
+                          setCommentText(event.target.value);
+                        }}
+                    />
+                          <button onClick={() => {
+                            addComment(post.id);
+                          }}>
+                            Submit Comment
+                          </button>
+                        </div>
+                        : null}
 
-              </div>
-              {/* <div className="deletePost">
+                  </div>
+                  {/* <div className="deletePost">
                 {(
                   <button
                     onClick={() => {
@@ -143,18 +146,18 @@ const HomePage = () => {
                   </button>
                 )}
               </div> */}
-            </div>
-            {/* <div className="postTextContainer"> {post.postText} </div>
+                </div>
+                {/* <div className="postTextContainer"> {post.postText} </div>
             <div className='buttons'>
               <button className='button'>Like</button>
 
               <button className='btn' onClick={handleOpen}>Comments</button>
             </div> */}
-            {/* <h3>@{post.author.name}</h3> */}
-          </div>
-        );
-      })}
-    </div>
+                {/* <h3>@{post.author.name}</h3> */}
+              </div>
+          );
+        })}
+      </div>
   );
 };
 

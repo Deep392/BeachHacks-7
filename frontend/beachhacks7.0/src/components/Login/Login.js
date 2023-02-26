@@ -12,7 +12,7 @@ import ContactUs from "../ContactUs/ContactUs";
 import app from "../../firebase-config"
 
 
-const Login = ({ setIsAuth }) => {
+const Login = ({ setIsAuth, setUser }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -29,6 +29,7 @@ const Login = ({ setIsAuth }) => {
                 console.log(user);
                 document.getElementById("LoginModal").checked = false;
                 setIsAuth(true);
+                setUser(auth.currentUser)
                 history.push("/");
                 setIsLoggedIn(true);
             })

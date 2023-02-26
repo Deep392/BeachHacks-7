@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
-import {useState} from "react";
-import {BrowserRouter as Router, Routes, Route, Link, Switch} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
 // Importing Components
 import Sidenav from "./components/Sidenav/Sidenav";
 import Navbar from "./components/Navbar/Navbar";
@@ -13,12 +13,17 @@ import Advising from "./components/Advising/Advising";
 import ContactUs from "./components/ContactUs/ContactUs"
 import Login from "./components/Login/Login";
 import Signup from "./components/Signup/Signup";
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
+import {auth} from "./firebase-config";
 
 function App() {
     const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
+    const [user, setUser] = useState(null);
 
     return (
         <Router>
+
             <nav className="nav ">
                 {!isAuth ? (
                     <div className="grid grid-cols-1 gap-10  place-content-center justify-items-center main-content">
@@ -27,7 +32,7 @@ function App() {
                         <div className="flex flex-col lg:flex-row">
                             <div className="grid flex-grow card place-items-center"><Signup/></div>
                             <div className="divider lg:divider-horizontal"></div>
-                            <div className="grid flex-grow card place-items-center"><Login setIsAuth={setIsAuth}/></div>
+                            <div className="grid flex-grow card place-items-center"><Login setIsAuth={setIsAuth} setUser={setUser} /></div>
                         </div>
                     </div>
                 ) : (

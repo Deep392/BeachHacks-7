@@ -3,13 +3,14 @@ import {useState} from "react";
 import {signOut} from "firebase/auth"
 import {auth} from "../../firebase-config";
 
-const Navbar = () => {
+const Navbar = ({isLog}) => {
     const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
     const [user, setUser] = useState(null);
     const signUserOut = () => {
         signOut(auth).then(() => {
             localStorage.clear();
             setIsAuth(false);
+            isLog(false)
             setUser(null)
             window.location.pathname = "/Login";
         });

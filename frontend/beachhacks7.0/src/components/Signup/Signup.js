@@ -1,25 +1,49 @@
 import React, {useContext, useState} from "react";
 import "./Signup.css"
-import {useLocation} from 'react-router-dom';
-import {getAuth, createUserWithEmailAndPassword, } from 'firebase/auth';
+import {useHistory} from 'react-router-dom';
+import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth';
+import {doc, setDoc, getFirestore, getDocs, collection, query, where, addDoc} from 'firebase/firestore'
 import app from "../../firebase-config";
+import HomePage from "../HomePage/HomePage";
+import AddPost from "../AddPost/Addpost";
+import Messages from "../Messages/Messages";
+import Advising from "../Advising/Advising";
+import ContactUs from "../ContactUs/ContactUs";
+import Login from "../Login/Login";
 
 const Signin = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmpassword, setConfirmPassword] = useState('');
+    const [username, setUsername] = useState('');
     const [error, setError] = useState('');
 
-    const history = useLocation();
+    const history = useHistory();
     const createAccount = async() => {
         try{
             if (password !== confirmpassword){
                 setError("Password and Confirm Password do not match");
                 return;
-            }
-            await createUserWithEmailAndPassword(getAuth(), email, password);
-            history.push('/HomePage');
+	    }
+	    const db = getFirestore();
+	    const usernameRef = collection(db, "usernames");
+	    const usernameQuery = query(usernameRef, where("username", "==", username));
+	    const usernameSnapshot = await getDocs(usernameQuery);
+
+	    if (!usernameSnapshot.empty){
+		setError("Username already exists")
+		return;
+	    }
+	    const userCredential = await createUserWithEmailAndPassword(getAuth(), email, password);
+
+	    const newUsernameRef = doc(usernameRef);
+	    await setDoc(newUsernameRef, {
+		username: username,
+		userId: userCredential.user.uid
+	    })
+
+	    document.getElementById("LoginModal").checked = true;            
         } catch (e) {
             console.log("hello you are here");
             setError(e.message);
@@ -39,6 +63,19 @@ const Signin = () => {
                     <h1 className="heading text-left">Sign Up</h1>
                     {error && <p className="error">{error}</p> }
                     <p className="text text-left">By continuing, you are setting up a Rooster account and agree to our User Agreement and Privacy Policy.</p>                    <br/>
+
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label">
+                            <span className="label-text">Set stuXpert Account Username</span>
+                        </label>
+                        <input
+                            type="text"
+                            className="input input-bordered w-full max-w-xs"
+                            placeholder="Username"
+                            value={username}
+                            onChange={e => setUsername(e.target.value)}
+                        />
+                    </div>
 
                     <div className="form-control w-full max-w-xs">
                         <label className="label">

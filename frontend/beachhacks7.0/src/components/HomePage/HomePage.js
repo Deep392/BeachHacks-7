@@ -111,6 +111,7 @@ const HomePage = () => {
                         })
                         : null}
 
+
                     <label
                         className="btn btn-outline btn-secondary"
                         onClick={onClickshowBox}
@@ -135,6 +136,7 @@ const HomePage = () => {
 
                   </div>
                   {/* <div className="deletePost">
+
                 {(
                   <button
                     onClick={() => {
@@ -145,9 +147,11 @@ const HomePage = () => {
                     &#128465;
                   </button>
                 )}
+
               </div> */}
                 </div>
                 {/* <div className="postTextContainer"> {post.postText} </div>
+
             <div className='buttons'>
               <button className='button'>Like</button>
 

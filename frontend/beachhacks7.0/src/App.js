@@ -7,11 +7,11 @@ import Sidenav from "./components/Sidenav/Sidenav";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import HomePage from "./components/HomePage/HomePage";
-import AddPost from "./components/AddPost/AddPost"
+import AddPost from "./components/AddPost/Addpost"
 import Messages from "./components/Messages/Messages";
 import Advising from "./components/Advising/Advising";
 import ContactUs from "./components/ContactUs/ContactUs"
-import Login from "./components/LogIn/Login";
+import Login from "./components/Login/Login";
 import Signup from "./components/Signup/Signup";
 
 function App() {

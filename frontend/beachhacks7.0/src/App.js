@@ -55,7 +55,7 @@ function App() {
                         <div style={{height:"100%"}}>
                             <Router>
 
-                                <header className="sticky top-0">
+                                <header className="sticky">
                                     <Navbar isLog={setShowContent}/>
                                 </header>
 

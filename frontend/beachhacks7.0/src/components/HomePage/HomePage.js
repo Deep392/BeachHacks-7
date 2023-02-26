@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./HomePage.css";
 import Sidenav from "../Sidenav/Sidenav";
 import {getDocs, collection, deleteDoc, doc, updateDoc, increment, arrayUnion} from "firebase/firestore";
@@ -64,36 +64,72 @@ const HomePage = () => {
         <div className="HomePage mx-auto sm:w-1/2 justify-items-center ">
             {postLists.map((post) => {
                 console.log("post: ", post);
-                {setShowComments(true)}
                 return (
-
                     <div className="card bg-neutral text-neutral-content w-full  mx-auto but-bod m-4">
                         <div className="card-body items-center text-center">
                             <p>{post.userN}</p>
                             <h2 className="card-title">{post.title}</h2>
                             <p>{post.postText}</p>
 
-                            <p>Comments: </p>
+
                             <div className="btn-group">
                                 <button className="btn" onClick={() => {likes(post.id)}}>Like ({post.likes})</button>
                                 <button className="btn" onClick={() => {dislikes(post.id);}}>Unlike ({post.dislikes})</button>
                                 <button className="btn" onClick={showCmnts}>View Comments</button>
-                                {showComments
-                                    ? post.comments.map((content) => {
-                                        if (content === ""){
-                                            return <p>Empty</p>;
-                                        }else {
-                                            return <p>{content}</p>;
-                                        }
-
-                                    })
-                                    : null}
-
-
-                                {/*<button className="btn" htmlFor="addComment">Add Comments</button>*/}
+                                <label className="btn" htmlFor="addComment">Add Comments</label>
                             </div>
+                            <p>Comments: </p>
+                            <p>{showComments
+                                ? post.comments.map((content) => {
+                                    if (content === ""){
+                                        return <p>Empty</p>;
+                                    }else {
+                                        return <p>{content}</p>;
+                                    }
+
+                                })
+                                : null}</p>
                         </div>
+
+
+                        <form onSubmit={addComment}>
+                            <input type="checkbox" id="addComment" className="modal-toggle"/>
+
+                            <div className="modal">
+                                <div className="modal-box relative">
+                                    <h1 className="logo-text spare-header-text">stuXpert</h1>
+                                    <br/>
+                                    <br/>
+                                    <h1 className="heading text-left">Add a Comment</h1>
+                                    <p className="text text-left">
+                                        Please don't post inappropriate comments.
+                                    </p>
+                                    <br/>
+
+
+
+                                    <div className="form-control w-full max-w-xs">
+                                        <label className="label">
+                                            <span className="label-text">Please write your comment.</span>
+                                        </label>
+
+                                        <textarea className="textarea textarea-bordered" placeholder="Write Feedback"
+                                                  onChange={(e) => setCommentText(e.target.value)}></textarea>
+                                    </div>
+
+
+                                    <div className={"flex flex-col gap-3 sm:w-1/2 mx-auto mt-6"}>
+                                        <button type="submit" className="btn btn-accent btn-outline">Comment</button>
+                                        <label htmlFor="addComment" className="btn btn-base-100">Go Back </label>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
                     </div>
+
+
+
 
                     // <div className="post">
                     //     <div className="postHeader">

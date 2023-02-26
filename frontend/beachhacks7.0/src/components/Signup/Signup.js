@@ -2,6 +2,7 @@ import React, {useContext, useState} from "react";
 import "./Signup.css"
 import {useHistory} from 'react-router-dom';
 import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth';
+import {doc, setDoc, getFirestore, getDocs, collection, query, where, addDoc} from 'firebase/firestore'
 import app from "../../firebase-config";
 import HomePage from "../HomePage/HomePage";
 import AddPost from "../AddPost/Addpost";
@@ -24,11 +25,25 @@ const Signin = () => {
             if (password !== confirmpassword){
                 setError("Password and Confirm Password do not match");
                 return;
-            }
-            await createUserWithEmailAndPassword(getAuth(), email, password);
-	    document.getElementById("LoginModal").checked = true;
+	    }
+	    const db = getFirestore();
+	    const usernameRef = collection(db, "usernames");
+	    const usernameQuery = query(usernameRef, where("username", "==", username));
+	    const usernameSnapshot = await getDocs(usernameQuery);
 
-            
+	    if (!usernameSnapshot.empty){
+		setError("Username already exists")
+		return;
+	    }
+	    const userCredential = await createUserWithEmailAndPassword(getAuth(), email, password);
+
+	    const newUsernameRef = doc(usernameRef);
+	    await setDoc(newUsernameRef, {
+		username: username,
+		userId: userCredential.user.uid
+	    })
+
+	    document.getElementById("LoginModal").checked = true;            
         } catch (e) {
             console.log("hello you are here");
             setError(e.message);

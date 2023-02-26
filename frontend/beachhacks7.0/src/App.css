@@ -87,6 +87,10 @@
     -moz-animation-iteration-count: infinite;
 }
 
+.main-content{
+    height: 100%;
+}
+
 @keyframes flash_border {
     0% {
         border-color: #fcb045;

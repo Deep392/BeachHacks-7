@@ -58,7 +58,7 @@ const HomePage = () => {
                 )}
               </div>
             </div>
-            <div className="postTextContainer"> {post.post} </div>
+            <div className="postTextContainer"> {post.postText} </div>
             <div className='buttons'>
               <button className='button'>Like</button>
               <button className='button' onClick={handleOpen}>

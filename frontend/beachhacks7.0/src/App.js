@@ -21,7 +21,7 @@ function App() {
         <Router>
             <nav className="nav ">
                 {!isAuth ? (
-                    <div className="grid grid-cols-1 gap-10  place-content-center justify-items-center">
+                    <div className="grid grid-cols-1 gap-10  place-content-center justify-items-center main-content">
                         <h1 className="logo-text main-header-text">stuXpert</h1>
 
                         <div className="flex flex-col lg:flex-row">
@@ -34,7 +34,7 @@ function App() {
                     <>
                         <div className="grid grid-rows-12">
                             <Router>
-                                <div className='row-start-1 row-end-2 sticky top-0'>
+                                <div className="row-start-1 row-end-2 sticky top-0">
                                     <Navbar/>
                                 </div>
 
@@ -46,9 +46,9 @@ function App() {
                                         <Switch>
                                             <Route exact path="/HomePage" component={HomePage}/>
                                             <Route exact path="/AddPost" component={Addpost}/>
-                                            {/* <Route exact path="/Messages" component={Messages}/>
+                                            <Route exact path="/Messages" component={Messages}/>
                                             <Route exact path="/Advising" component={Advising}/>
-                                            <Route exact path="/ContactUs" component={ContactUs}/> */}
+                                            <Route exact path="/ContactUs" component={ContactUs}/>
                                         </Switch>
                                     </div>
                                 </div>

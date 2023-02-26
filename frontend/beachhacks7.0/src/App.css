@@ -70,7 +70,8 @@
 }
 .modal-box{
     border: 3px solid white;
-    padding: 85px;
+    padding-right: 80px;
+    padding-left: 80px;
 
     animation-name: flash_border;
     animation-duration: 10s;

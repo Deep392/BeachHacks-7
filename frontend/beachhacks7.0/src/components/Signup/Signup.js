@@ -1,8 +1,14 @@
 import React, {useContext, useState} from "react";
 import "./Signup.css"
-import {useLocation} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth';
 import app from "../../firebase-config";
+import HomePage from "../HomePage/HomePage";
+import AddPost from "../AddPost/Addpost";
+import Messages from "../Messages/Messages";
+import Advising from "../Advising/Advising";
+import ContactUs from "../ContactUs/ContactUs";
+import Login from "../Login/Login";
 
 const Signin = () => {
 
@@ -11,7 +17,7 @@ const Signin = () => {
     const [confirmpassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
 
-    const history = useLocation();
+    const history = useHistory();
     const createAccount = async() => {
         try{
             if (password !== confirmpassword){
@@ -19,7 +25,9 @@ const Signin = () => {
                 return;
             }
             await createUserWithEmailAndPassword(getAuth(), email, password);
-            history.push('/HomePage');
+	    document.getElementById("LoginModal").checked = true;
+
+            
         } catch (e) {
             console.log("hello you are here");
             setError(e.message);

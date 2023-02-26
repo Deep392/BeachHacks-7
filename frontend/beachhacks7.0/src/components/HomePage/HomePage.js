@@ -118,20 +118,23 @@ const HomePage = () => {
                   Add a Comment
                 </label>
                 {showBox?
+                <div>
                     <textarea
                     placeholder="Post..."
                     onChange={(event) => {
                     setCommentText(event.target.value);
                     }}
-                />: null}
+                />
                 <button onClick={() => {
                     addComment(post.id);
                   }}> 
                   Submit Comment
                 </button>
+                </div>
+                : null}
 
               </div>
-              {/* <div className="deletePost">
+              <div className="deletePost">
                 {(
                   <button
                     onClick={() => {
@@ -142,7 +145,7 @@ const HomePage = () => {
                     &#128465;
                   </button>
                 )}
-              </div> */}
+              </div>
             </div>
             {/* <div className="postTextContainer"> {post.postText} </div>
             <div className='buttons'>

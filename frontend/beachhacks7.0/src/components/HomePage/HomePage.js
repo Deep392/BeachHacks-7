@@ -20,7 +20,7 @@ const HomePage = () => {
     const showCmnts = () => setShowComments(!showComments);
     const onClickshowBox = () => setShowBox(!showBox)
     const currUser = auth.currentUser;
-    console.log("curr User: ", currUser.email);
+    // console.log("curr User: ", currUser.email);
 
     const postsCollectionRef = collection(db, "posts");
 
@@ -44,6 +44,7 @@ const HomePage = () => {
         await updateDoc(postDoc, {
             likes: increment(1)
         });
+        window.location.reload(true);
     };
 
     const dislikes = async (id) => {
@@ -51,6 +52,7 @@ const HomePage = () => {
         await updateDoc(postDoc, {
             dislikes: increment(1)
         });
+        window.location.reload(true);
     };
 
     const addComment = async (id) => {
@@ -58,6 +60,7 @@ const HomePage = () => {
         await updateDoc(postDoc, {
             comments: arrayUnion(commentText)
         });
+        window.location.reload(true);
     };
 
     return (
@@ -81,9 +84,7 @@ const HomePage = () => {
                             <p>Comments: </p>
                             <p>{showComments
                                 ? post.comments.map((content) => {
-                                    if (content === ""){
-                                        return <p>Empty</p>;
-                                    }else {
+                                    if (content !== ""){
                                         return <p>{content}</p>;
                                     }
 

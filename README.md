@@ -4,5 +4,5 @@ Contributors:
 
 - Deep Meghani
 - Om Shah
-- Het Makadiya
+- Het Makadia
 - Vraj Patel

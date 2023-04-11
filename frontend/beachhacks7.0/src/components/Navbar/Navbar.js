@@ -30,6 +30,7 @@ const Navbar = ({isLog}) => {
                         <li><a><Link to="/AddPost">Add a Post</Link></a></li>
                         {/*<li><a><Link to="/Messages">Messages</Link></a></li>*/}
                         {/*<li><a><Link to="/Advising">Advising</Link></a></li>*/}
+                        <li><a><Link to="/ContactUs">Calendar</Link></a></li>
                         <li><a><Link to="/ContactUs">Contact Us</Link></a></li>
                     </ul>
                 </div>

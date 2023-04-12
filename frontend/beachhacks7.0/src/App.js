@@ -16,6 +16,8 @@ import Signup from "./components/Signup/Signup";
 import 'firebase/compat/firestore';
 import { getDocs, collection, deleteDoc, doc, updateDoc, increment, arrayUnion } from "firebase/firestore";
 import { auth, db } from "./firebase-config";
+import Calendar from './components/Calendar/Calendar';
+import AddEvent from './components/Calendar/AddEvent';
 
 function App() {
     console.log(auth.currentUser)
@@ -65,6 +67,8 @@ function App() {
                                         <Route exact path="/AddPost" component={Addpost}/>
                                         <Route exact path="/Messages" component={Messages}/>
                                         <Route exact path="/Advising" component={Advising}/>
+                                        <Route exact path="/Calendar" component={Calendar}/>
+                                        <Route exact path="/AddEvent" component={AddEvent}/>
                                         <Route exact path="/ContactUs" component={ContactUs}/>
                                     </Switch>
                                 </main>

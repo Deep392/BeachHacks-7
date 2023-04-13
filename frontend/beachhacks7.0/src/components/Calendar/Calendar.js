@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 // import "./App.css";
-// import { gapi } from "gapi-script";
+import { gapi } from "gapi-script";
 // import Event from "./components/Event.js";
 import {Link} from "react-router-dom";
+import {GoogleLogin} from 'react-google-login'
  
 const Calendar = () => {
   const [events, setEvents] = useState([]);
@@ -13,7 +14,15 @@ const Calendar = () => {
   const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
   const SCOPES = 'https://www.googleapis.com/auth/calendar.readonly';
   
-  var gapi = window.gapi;
+  //var gapi = window.gapi;
+
+  const responseGoogle = (response) => {
+    console.log(response);
+  }
+
+  const responseError = (error) => {
+    console.log(error);
+  }
 
   const handleClick = () => {
     gapi.load('client:auth2', () => {
@@ -28,7 +37,7 @@ const Calendar = () => {
 
       gapi.client.load('calendar', 'v3', () => console.log('bam!'))
 
-      gapi.auth2.getAuthInstance().signIn()
+      window.gapi.auth2.getAuthInstance().signIn()
       // .then(() => {
         
       //   var event = {
@@ -104,9 +113,19 @@ const Calendar = () => {
         <textarea className="textarea textarea-bordered" placeholder="Hello there! I am confused between CECS 328 and CECS 343 classes. Please help me in choosing either of the class." value={postText}
                   onChange={(e) => setPostText(e.target.value)}></textarea>
       </div>
-      <button type="submit" className="add-event" onClick={handleClick}>
+      {/* <button type="submit" className="add-event" onClick={handleClick}>
         Create
-      </button>
+      </button> */}
+      <GoogleLogin
+        clientId='898771624531-un6g764dlv44v356l4fj0v8i4f0i4cnn.apps.googleusercontent.com'
+        buttonText="Sign In and authorize Calendar"
+        onSuccess={responseGoogle}
+        onFailure={responseError}
+        cookiePolicy={'single_host_origin'}
+        responseType='code'
+        accessType="offline"
+        scope='openid email profile https://www.googleapis.com/auth/calendar'
+      ></GoogleLogin>
     </div>
   );
 }
